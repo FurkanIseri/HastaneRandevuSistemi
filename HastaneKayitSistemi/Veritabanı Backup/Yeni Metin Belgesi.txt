@@ -1,0 +1,10 @@
+2. Adım: Diğer Bilgisayarda Geri Yükleme (Restore)
+Diğer bilgisayarda PostgreSQL ve pgAdmin yüklü olduğundan emin ol.
+
+pgAdmin'i aç ve aynı isimde boş bir veritabanı oluştur (Sağ tık -> Create -> Database).
+
+Oluşturduğun boş veritabanına sağ tıkla ve Restore... de.
+
+Filename kısmından aldığın yedek.sql dosyasını seç.
+
+Restore butonuna bas. Tüm tabloların ve verilerin anında gelecektir.
