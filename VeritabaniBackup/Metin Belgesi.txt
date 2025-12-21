@@ -1,0 +1,18 @@
+pgAdmin'i açacak.
+
+Databases üzerine sağ tıklayıp -> Create -> Database... diyecek.
+
+İsim olarak senin projenin adını verecek (Örn: HastaneProje) ve kaydedecek.
+
+Oluşturduğu bu boş veritabanının üzerine sağ tıklayıp Query Tool (Sorgu Aracı) diyecek.
+
+Sol üstteki klasör simgesine (Open File) tıklayıp senin gönderdiğin HastaneProje_Final.sql dosyasını seçecek.
+
+Ekrana binlerce satır kod gelecek. Yukarıdaki Play (F5) butonuna basacak.
+
+Sonuç: Tablolar, veriler, triggerlar ve procedurler olduğu gibi karşı tarafa yüklenmiş olacak.
+
+⚠️ ÇOK ÖNEMLİ UYARI: C# Bağlantı Kodunu Unutma!
+Veritabanını karşı tarafa kurmak yetmez. Senin C# projenin içinde SqlBaglantisi.cs sınıfında şöyle bir kod var:
+
+"Server=localhost; Port=5432; Database=HastaneProje; User Id=postgres; Password=1234;"
