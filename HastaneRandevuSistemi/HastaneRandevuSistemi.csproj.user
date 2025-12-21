@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_LastSelectedProfileId>D:\projeler\Proje\HastaneKayitSistemi\HastaneKayitSistemi\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="FormBilgiDuzenle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormBransPaneli.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormDoktorBilgiDuzenle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormDoktorDetay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormDoktorGiris.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormDoktorPaneli.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormDuyurular.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormGirisler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormHastaDetay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormRandevuListesi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormSekreterDetay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormSekreterGiris.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormHastaKayit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormHastaGiris.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormSekreterPaneli.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="IlacDetay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ReceteGoruntule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
