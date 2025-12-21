@@ -19,6 +19,7 @@ namespace HastaneRandevuSistemi
         {
             InitializeComponent();
         }
+
         // Doktor giriş ekranında yer alan TC'yi almak için oluşturulan değişken.
         public string tc;
         sqlBaglanti bgl = new sqlBaglanti();
@@ -26,21 +27,30 @@ namespace HastaneRandevuSistemi
         // Tıklanan Randevunun ID'sini burada tutacağız.
         int secilenRandevuID = 0;
 
+        // Doktorun çalıştığı hastane ID'sini burada tutacağız
+        public int doktorHastaneID = -1; 
+
         private void FormDoktorDetay_Load(object sender, EventArgs e)
         {
             LblTC.Text = tc;
 
-            // Doktor Ad-Soyad Çekme
+            // Doktor Ad-Soyad ve HASTANE ID Çekme
             string tcHash = SecurityHelper.Hashle(LblTC.Text);
             NpgsqlConnection conn = bgl.baglanti();
             try
             {
-                NpgsqlCommand command = new NpgsqlCommand("SELECT doktor_ad, doktor_soyad FROM Doktorlar WHERE tc_hash=@par1", conn);
+                NpgsqlCommand command = new NpgsqlCommand("SELECT doktor_ad, doktor_soyad, hastane_id FROM Doktorlar WHERE tc_hash=@par1", conn);
                 command.Parameters.AddWithValue("@par1", tcHash);
+                
                 NpgsqlDataReader dr = command.ExecuteReader();
                 while (dr.Read())
                 {
                     LblAdSoyad.Text = dr[0] + " " + dr[1];
+                    
+                    if (dr[2] != DBNull.Value)
+                    {
+                        doktorHastaneID = int.Parse(dr[2].ToString());
+                    }
                 }
             }
             catch (Exception ex)
@@ -56,7 +66,6 @@ namespace HastaneRandevuSistemi
             GridGuncelle();
             IlaclariGetir();
 
-            // Sekreter Adını Getirme (Opsiyonel Bilgi)
             NpgsqlConnection conn2 = bgl.baglanti();
             try
             {
@@ -68,8 +77,7 @@ namespace HastaneRandevuSistemi
                 NpgsqlDataReader dr2 = command2.ExecuteReader();
                 while (dr2.Read())
                 {
-                    // Eğer formda label9 varsa sekreter adını yazar
-                    if (label9 != null) label9.Text = dr2[0] + " " + dr2[1];
+                    label9.Text = dr2[0] + " " + dr2[1];
                 }
             }
             finally
@@ -140,7 +148,7 @@ namespace HastaneRandevuSistemi
             }
         }
 
-        // Randevu ID'sini alma(Reçete için)
+        // Randevu ID'sini alma
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -151,8 +159,6 @@ namespace HastaneRandevuSistemi
                 if (row.Cells[0].Value != null)
                 {
                     secilenRandevuID = int.Parse(row.Cells[0].Value.ToString());
-
-                    // ID'yi Label'a yaz 
                     label8.Text = secilenRandevuID.ToString();
                 }
 
@@ -193,6 +199,9 @@ namespace HastaneRandevuSistemi
 
             try
             {
+                // Bağlantı kontrolü
+                if (conn.State != ConnectionState.Open) conn.Open();
+
                 tran = conn.BeginTransaction();
 
                 // PROSEDÜRÜ ÇAĞIRMA 
@@ -204,8 +213,8 @@ namespace HastaneRandevuSistemi
 
                 // Npgsql'de Output parametresi tanımlama:
                 NpgsqlParameter outParam = new NpgsqlParameter("@pReceteID", NpgsqlTypes.NpgsqlDbType.Integer);
-                outParam.Direction = ParameterDirection.InputOutput; // Hem giriş hem çıkış olabilir ama biz çıkış alacağız
-                outParam.Value = 0; // Başlangıç değeri
+                outParam.Direction = ParameterDirection.InputOutput; 
+                outParam.Value = 0; 
                 commandRecete.Parameters.Add(outParam);
 
                 commandRecete.ExecuteNonQuery(); // Prosedürü çalıştır
@@ -259,7 +268,7 @@ namespace HastaneRandevuSistemi
         private void BtnDuyurular_Click(object sender, EventArgs e)
         {
             FormDuyurular frm = new FormDuyurular();
-            
+            frm.hastaneID = doktorHastaneID; 
             frm.Show();
         }
 

@@ -25,7 +25,9 @@ namespace HastaneRandevuSistemi
         int mevcutHastaneID = -1;
         private void FormBransPaneli_Load(object sender, EventArgs e)
         {
+           
             SekreterinHastanesiniBul();
+            GridGuncelle();
         }
         // Sekreterin Hastanesini bulma.  
         void SekreterinHastanesiniBul()

@@ -257,15 +257,39 @@ namespace HastaneRandevuSistemi
         {
             Guid aktifSekreterID = SekreterIDBulma();
 
+            // Değişkenler
+            int sekreterHastaneID = -1;
             NpgsqlConnection conn = bgl.baglanti();
 
             try
             {
-                NpgsqlCommand command5 = new NpgsqlCommand("INSERT INTO Duyurular (duyurular_text, sekreter_id) VALUES (@par1, @par2)", conn);
+                // 1. ÖNCE SEKRETERİN HANGİ HASTANEDE OLDUĞUNU BULALIM
+                string sqlHastaneBul = "SELECT hastane_id FROM Sekreterler WHERE sekreter_id = @pID";
+                NpgsqlCommand cmdBul = new NpgsqlCommand(sqlHastaneBul, conn);
+                cmdBul.Parameters.AddWithValue("@pID", aktifSekreterID);
+
+                object sonuc = cmdBul.ExecuteScalar();
+                if (sonuc != null && sonuc != DBNull.Value)
+                {
+                    sekreterHastaneID = int.Parse(sonuc.ToString());
+                }
+
+                // Eğer hastane bulunamazsa işlemi durdur
+                if (sekreterHastaneID == -1)
+                {
+                    MessageBox.Show("Sekreterin hastane kaydı bulunamadı!");
+                    return;
+                }
+
+                string sqlInsert = "INSERT INTO Duyurular (duyurular_text, sekreter_id, hastane_id) VALUES (@par1, @par2, @par3)";
+                NpgsqlCommand command5 = new NpgsqlCommand(sqlInsert, conn);
 
                 command5.Parameters.AddWithValue("@par1", RchDuyuru.Text);
                 command5.Parameters.AddWithValue("@par2", aktifSekreterID);
+                command5.Parameters.AddWithValue("@par3", sekreterHastaneID); // Yeni eklenen parametre
+
                 command5.ExecuteNonQuery();
+
                 MessageBox.Show("Duyuru başarıyla oluşturuldu.", "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 RchDuyuru.Text = "";
             }
@@ -307,6 +331,7 @@ namespace HastaneRandevuSistemi
             frm.FormClosed += (s, args) =>
             {
                 GridleriGuncelle();
+                frm.sekreterTC = LblTC.Text;
             };
             frm.ShowDialog();
         }
@@ -316,6 +341,7 @@ namespace HastaneRandevuSistemi
             FormDuyurular frm = new FormDuyurular();
             frm.FormClosed += (s, args) =>
             {
+                frm.hastaneID = this.mevcutHastaneID;
                 GridleriGuncelle();
             };
             frm.ShowDialog();

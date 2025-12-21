@@ -28,11 +28,13 @@ namespace HastaneRandevuSistemi
         Guid mevcutSekreterID = Guid.Empty;
         private void FormDoktorPaneli_Load(object sender, EventArgs e)
         {
+            
             // Cinsiyet kutusunu doldur.
             CmbCinsiyet.Items.Clear();
             CmbCinsiyet.Items.Add("Erkek");
             CmbCinsiyet.Items.Add("Kadın");
             SekreterBilgileriniGetir();
+            GridGuncelle();
         }
         public void SekreterBilgileriniGetir()
         {

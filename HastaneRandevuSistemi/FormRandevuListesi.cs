@@ -17,12 +17,48 @@ namespace HastaneRandevuSistemi
         {
             InitializeComponent();
         }
+        public string sekreterTC; // FormSekreterDetay'dan buraya TC gelecek
         sqlBaglanti bgl = new sqlBaglanti();
+        int hastaneID = -1; // Sekreterin hastanesini burada tutacağız
+
+        // Sekreterin hangi hastaneye bağlı olduğunu bulan fonksiyon
+        void SekreterHastaneBul()
+        {
+            NpgsqlConnection conn = bgl.baglanti();
+            // TC'yi Hashleyip arıyoruz 
+            string tcHash = SecurityHelper.Hashle(sekreterTC);
+
+            try
+            {
+                // Sekreter tablosundan hastane_id'yi çekiyoruz
+                NpgsqlCommand cmd = new NpgsqlCommand("SELECT hastane_id FROM Sekreterler WHERE tc_hash = @p1", conn);
+                cmd.Parameters.AddWithValue("@p1", tcHash);
+
+                object sonuc = cmd.ExecuteScalar();
+                if (sonuc != null)
+                {
+                    hastaneID = int.Parse(sonuc.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hastane bilgisi alınamadı: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         void Listele()
         {
+            // Eğer hastane ID bulunamadıysa listeyi boşuna çekme
+            if (hastaneID == -1) return;
+
             DataTable dt = new DataTable();
             NpgsqlConnection conn = bgl.baglanti();
 
+     
             string sorgu = @"
                 SELECT 
                     r.randevu_id as ""ID"",
@@ -35,14 +71,17 @@ namespace HastaneRandevuSistemi
                 FROM Randevular r
                 JOIN Branslar b ON r.brans_id = b.brans_id
                 JOIN Doktorlar d ON r.doktor_id = d.doktor_id
+                WHERE d.hastane_id = @p1  
                 ORDER BY r.randevu_id DESC";
 
             NpgsqlDataAdapter da = new NpgsqlDataAdapter(sorgu, conn);
-            da.Fill(dt);
+            // Parametre olarak bulduğumuz hastaneID'yi gönderiyoruz
+            da.SelectCommand.Parameters.AddWithValue("@p1", hastaneID);
 
+            da.Fill(dt);
             dataGridView1.DataSource = dt;
 
-            // Tablo görünüm ayarı
+
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             conn.Close();
@@ -50,6 +89,8 @@ namespace HastaneRandevuSistemi
 
         private void FormRandevuListesi_Load(object sender, EventArgs e)
         {
+            // Önce Sekreterin hastanesini bul, sonra o hastaneye göre listele
+            SekreterHastaneBul();
             Listele();
         }
 
@@ -80,7 +121,7 @@ namespace HastaneRandevuSistemi
                     command.ExecuteNonQuery();
 
                     MessageBox.Show("Randevu slotu başarıyla silindi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Listele(); // Listeyi güncelle
+                    Listele(); 
                 }
                 catch (PostgresException ex)
                 {
@@ -96,6 +137,7 @@ namespace HastaneRandevuSistemi
                 }
             }
         }
+
         public int secilen;
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
