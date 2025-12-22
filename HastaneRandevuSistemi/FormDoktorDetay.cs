@@ -246,6 +246,10 @@ namespace HastaneRandevuSistemi
 
                 tran.Commit();
                 MessageBox.Show("Reçete başarıyla oluşturuldu.");
+                label8.Text = "0";
+                RchTxtTaniTeshis.Text = "";
+                CmbIlac.Text = "";TxtAdet.Text = "0";
+                TxtKullanimSekli.Text = "";
             }
             catch (Exception ex)
             {
