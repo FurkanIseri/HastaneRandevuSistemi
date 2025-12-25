@@ -331,8 +331,9 @@ namespace HastaneRandevuSistemi
             frm.FormClosed += (s, args) =>
             {
                 GridleriGuncelle();
-                frm.sekreterTC = LblTC.Text;
             };
+            frm.sekreterTC = LblTC.Text;
+
             frm.ShowDialog();
         }
 
@@ -341,9 +342,10 @@ namespace HastaneRandevuSistemi
             FormDuyurular frm = new FormDuyurular();
             frm.FormClosed += (s, args) =>
             {
-                frm.hastaneID = this.mevcutHastaneID;
+                
                 GridleriGuncelle();
             };
+            frm.hastaneID = this.mevcutHastaneID;
             frm.ShowDialog();
         }
         // Ana Menüye dönüş
