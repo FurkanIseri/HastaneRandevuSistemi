@@ -1,20 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\projeler\\Proje\\HastaneRandevuSistemi\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{D2D77382-2094-4C29-9F5D-42CEE6E97A85}|HastaneRandevuSistemi\\HastaneRandevuSistemi.csproj|d:\\projeler\\proje\\hastanerandevusistemi\\hastanerandevusistemi\\formhastakayit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2D77382-2094-4C29-9F5D-42CEE6E97A85}|HastaneRandevuSistemi\\HastaneRandevuSistemi.csproj|solutionrelative:hastanerandevusistemi\\formhastakayit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D2D77382-2094-4C29-9F5D-42CEE6E97A85}|HastaneRandevuSistemi\\HastaneRandevuSistemi.csproj|d:\\projeler\\proje\\hastanerandevusistemi\\hastanerandevusistemi\\formhastakayit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{D2D77382-2094-4C29-9F5D-42CEE6E97A85}|HastaneRandevuSistemi\\HastaneRandevuSistemi.csproj|solutionrelative:hastanerandevusistemi\\formhastakayit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D2D77382-2094-4C29-9F5D-42CEE6E97A85}|HastaneRandevuSistemi\\HastaneRandevuSistemi.csproj|d:\\projeler\\proje\\hastanerandevusistemi\\hastanerandevusistemi\\formdoktordetay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{D2D77382-2094-4C29-9F5D-42CEE6E97A85}|HastaneRandevuSistemi\\HastaneRandevuSistemi.csproj|solutionrelative:hastanerandevusistemi\\formdoktordetay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -22,48 +9,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FormHastaKayit.cs",
-              "DocumentMoniker": "D:\\projeler\\Proje\\HastaneRandevuSistemi\\HastaneRandevuSistemi\\FormHastaKayit.cs",
-              "RelativeDocumentMoniker": "HastaneRandevuSistemi\\FormHastaKayit.cs",
-              "ToolTip": "D:\\projeler\\Proje\\HastaneRandevuSistemi\\HastaneRandevuSistemi\\FormHastaKayit.cs",
-              "RelativeToolTip": "HastaneRandevuSistemi\\FormHastaKayit.cs",
-              "ViewState": "AgIAAGQAAAAAAAAAAAAiwD8AAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-22T11:37:10.122Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FormHastaKayit.cs [Design]",
-              "DocumentMoniker": "D:\\projeler\\Proje\\HastaneRandevuSistemi\\HastaneRandevuSistemi\\FormHastaKayit.cs",
-              "RelativeDocumentMoniker": "HastaneRandevuSistemi\\FormHastaKayit.cs",
-              "ToolTip": "D:\\projeler\\Proje\\HastaneRandevuSistemi\\HastaneRandevuSistemi\\FormHastaKayit.cs [Design]",
-              "RelativeToolTip": "HastaneRandevuSistemi\\FormHastaKayit.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-22T11:37:07.727Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "FormDoktorDetay.cs [Design]",
-              "DocumentMoniker": "D:\\projeler\\Proje\\HastaneRandevuSistemi\\HastaneRandevuSistemi\\FormDoktorDetay.cs",
-              "RelativeDocumentMoniker": "HastaneRandevuSistemi\\FormDoktorDetay.cs",
-              "ToolTip": "D:\\projeler\\Proje\\HastaneRandevuSistemi\\HastaneRandevuSistemi\\FormDoktorDetay.cs [Design]",
-              "RelativeToolTip": "HastaneRandevuSistemi\\FormDoktorDetay.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-22T11:36:59.108Z",
-              "EditorCaption": " [Design]"
             }
           ]
         }
